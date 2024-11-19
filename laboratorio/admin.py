@@ -5,16 +5,16 @@ from .models import Laboratorio, DirectorGeneral,Producto
 # Register your models here.
 
 class LaboratorioAdmin(admin.ModelAdmin):
-    list_display = ('id','laboratorio')
+    list_display = ('id','laboratorio','ciudad','pais')
     ordering = ('id',)
-    search_fields = ('id','laboratorio',)
+    search_fields = ('id','laboratorio','ciudad','pais')
     #list_filter = ('id','laboratorio')
     
 
 class DirectorGeneralAdmin(admin.ModelAdmin):
-    list_display = ('id','nombre','laboratorio')
+    list_display = ('id','nombre','laboratorio','especialidad')
     ordering = ('id',)
-    search_fields = ('id','nombre','laboratorio')
+    search_fields = ('id','nombre','laboratorio','especialidad')
     #list_filter = ('nombre','laboratorio')
 
     

@@ -1,0 +1,37 @@
+{% extends "layouts/base.html" %}
+{% block contenido %}
+<main class="container-fluid">
+    <section id="listado-laboratorios">
+        <h1 class="text-left py-3">Informacion de Laboratorios</h1>
+
+        {% if laboratorio %}
+            <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Ciudad</th>
+                    <th scope="col">Pais</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lab in laboratorio %}
+                <tr>
+                    <td>{{lab.id}}</td>
+                    <td>{{lab.laboratorio|upper}}</td>
+                    <td>{{lab.ciudad}}</td>
+                    <td>{{lab.pais}}</td>
+                    <td>Actualizar</td>
+                    <td>Eliminar</td>
+                    <td><a class="btn btn-primary" href="{% url 'upd_laboratorio' %}" class="btn btn-primary" target="_blank">Actualizar Lab</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="text-center">No existen laboratorios disponibles.</p>
+        {% endif %}
+    </section>
+</main>
+{% endblock contenido %}
