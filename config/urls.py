@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.IndexView, name='index'),
     path('', include('laboratorio.urls')),
+
 ]

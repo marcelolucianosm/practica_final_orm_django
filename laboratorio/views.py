@@ -37,3 +37,13 @@ class LaboratorioUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+    
+class LaboratorioDeleteView(DeleteView):
+    model = Laboratorio
+    template_name = "laboratorios/del_laboratorio.html"
+    fields = ['laboratorio', 'ciudad','pais']
+    success_url = reverse_lazy('laboratorio')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

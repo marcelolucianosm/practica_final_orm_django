@@ -1,0 +1,59 @@
+{% extends "layouts/base.html" %}
+
+{% block contenido %}
+
+    <main class="container">
+        <section>
+            <h1 class="text-center py-5">Detalle del club {{club.nombre}}</h1>
+
+            <div class="d-flex py-3 justify-content-between">
+              {% if  perms.club.can_edit_clubes %}
+                <div>
+                    <a class="btn btn-warning" href="{% url "update_club" club.id %}">Modificar datos del club</a>
+                </div>
+              {% endif %}
+
+              {% if  perms.club.delete_club %}
+                <div>
+                    <a class="btn btn-danger" href="{% url "delete_club" club.id %}">Eliminar club</a>
+                </div>
+              {% endif %}
+
+            </div>
+
+            <div>
+                <img src="{{club.imagen}}" class="rounded mx-auto d-block" alt="club.nombre">
+            </div>
+        </section>
+
+        <section>
+            <h3 class="text-center">Listado de jugadores del club:</h3>
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Dorsal</th>
+                    <th scope="col">Posición</th>
+                    <th scope="col">Detalle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for jugador in jugadores %}
+                    <tr>
+                        <td>{{jugador.nombre}}</td>
+                        <td>{{jugador.apellido}}</td>
+                        <td>{{jugador.dorsal}}</td>
+                        <td>{{jugador.posicion}}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{% url "jugador_detail" jugador.id %}" >Ver más</a>
+                        </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </section>
+
+    </main>
+{% endblock  %}

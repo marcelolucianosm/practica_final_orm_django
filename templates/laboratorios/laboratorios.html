@@ -8,6 +8,7 @@
             <table class="table">
             <thead>
                 <tr>
+                    <th scope="col">Id</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Ciudad</th>
                     <th scope="col">Pais</th>
@@ -22,9 +23,8 @@
                     <td>{{lab.laboratorio|upper}}</td>
                     <td>{{lab.ciudad}}</td>
                     <td>{{lab.pais}}</td>
-                    <td>Actualizar</td>
-                    <td>Eliminar</td>
-                    <td><a class="btn btn-primary" href="{% url 'upd_laboratorio' %}" class="btn btn-primary" target="_blank">Actualizar Lab</a></td>
+                    <td><a class="btn btn-primary" href="{% url 'upd_laboratorio' pk=lab.id %}" class="btn btn-primary" >Actualizar</a></td>
+                    <td><a class="btn btn-primary" href="{% url 'del_laboratorio' pk=lab.id %}" class="btn btn-primary" >Eliminar</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

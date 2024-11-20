@@ -1,0 +1,26 @@
+{% extends "layouts/base.html" %}
+{% block contenido %}
+
+    <main class="container-fluid">
+        <section>
+            <h1 class="text-left py-5">Eliminar Laboratorio</h1>
+        </section>
+
+        <section>
+
+            <div class="row justify-content-left">
+                <div class="col-12 col-md-5">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{form}}
+                        <div class="d-grid gap-2 d-md-block">
+                            <button class="btn btn-primary btn-md" type="submit">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+{% endblock  %}
