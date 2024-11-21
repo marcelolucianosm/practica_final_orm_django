@@ -5,6 +5,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.shortcuts import redirect
 from django.contrib import messages
 
+from django.views.generic import TemplateView
+
 from .models import Laboratorio
 
 class LaboratorioView(ListView):
@@ -49,3 +51,9 @@ class LaboratorioDeleteView(DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+    
+class InicioPageView(TemplateView):
+    template_name = "inicio.html"
+    
+class AcerdePageView(TemplateView):
+    template_name = "acerca-de.html"
