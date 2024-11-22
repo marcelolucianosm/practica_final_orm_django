@@ -1,0 +1,89 @@
+SELECTS CONSOLIDACION MODULO 7
+
+db_final_orm=# select id,laboratorio from laboratorio_laboratorio;
+ id |  laboratorio
+----+---------------
+  1 | Laboratorio 1
+  2 | Laboratorio 2
+  3 | Laboratorio 3
+  4 | Laboratorio 4
+  5 | Laboratorio 5
+(5 filas)
+
+
+db_final_orm=# select id,nombre,laboratorio_id from laboratorio_directorgeneral;
+ id |   nombre   | laboratorio_id
+----+------------+----------------
+  1 | Director 1 |              1
+  2 | Director 2 |              2
+  4 | Director 4 |              4
+  5 | Director 5 |              5
+  3 | Director 3 |              3
+(5 filas)
+
+
+db_final_orm=# select id,nombre,f_fabricacion,p_costo,p_venta,laboratorio_id from laboratorio_producto;
+ id |   nombre   |         f_fabricacion         | p_costo | p_venta | laboratorio_id
+----+------------+-------------------------------+---------+---------+----------------
+  1 | Producto 1 | 2024-11-18 15:55:25.196866-03 |  2000.5 |  4000.5 |              1
+  2 | Producto 2 | 2024-11-18 15:56:00.626261-03 |  3000.6 |  5000.6 |              2
+  3 | Producto 3 | 2024-11-18 15:56:27.145183-03 |  5000.4 |  7000.4 |              3
+  4 | Producto 4 | 2024-11-18 15:57:19.591169-03 |  1000.1 |  2000.1 |              4
+  5 | Producto 5 | 2024-11-18 15:57:43.305664-03 |  7000.3 |  9000.3 |              5
+(5 filas)
+
+
+db_final_orm=# select id,nombre,f_fabricacion,p_costo,p_venta,laboratorio_id from laboratorio_producto where nombre like '%Producto 1%';
+ id |   nombre   |         f_fabricacion         | p_costo | p_venta | laboratorio_id
+----+------------+-------------------------------+---------+---------+----------------
+  1 | Producto 1 | 2024-11-18 15:55:25.196866-03 |  2000.5 |  4000.5 |              1
+(1 fila)
+
+select nombre,laboratorio from laboratorio_producto lp ,laboratorio_laboratorio ll where lp.laboratorio_id=ll.id order by nombre;
+   nombre   |  laboratorio
+------------+---------------
+ Producto 1 | Laboratorio 1
+ Producto 2 | Laboratorio 2
+ Producto 3 | Laboratorio 3
+ Producto 4 | Laboratorio 4
+ Producto 5 | Laboratorio 5
+(5 filas)
+
+
+select DISTINCT(laboratorio) as laboratorio from laboratorio_producto lp ,laboratorio_laboratorio ll where lp.laboratorio_id=ll.id order by laboratorio;
+  laboratorio
+---------------
+ Laboratorio 1
+ Laboratorio 2
+ Laboratorio 3
+ Laboratorio 4
+ Laboratorio 5
+(5 filas)
+
+class Laboratorio(models.Model):
+    laboratorio = models.CharField(max_length=50, blank=True, null=True)
+    ciudad = models.CharField(max_length=50, blank=True, null=True)
+    pais = models.CharField(max_length=50, blank=True, null=True)
+    
+    def __str__(self):
+        return self.laboratorio
+    
+class DirectorGeneral(models.Model):
+    nombre = models.CharField(max_length=50, blank=True, null=True)
+    laboratorio = models.OneToOneField(Laboratorio, on_delete=models.CASCADE)
+    especialidad = models.CharField(max_length=50, blank=True, null=True)
+	
+(venv) PS C:\Users\msanchez\e-camp-python\practica_final_orm_django> py .\manage.py makemigrations
+Migrations for 'laboratorio':
+  laboratorio\migrations\0005_directorgeneral_especialidad_laboratorio_ciudad_and_more.py
+    + Add field especialidad to directorgeneral
+    + Add field ciudad to laboratorio
+    + Add field pais to laboratorio
+
+
+
+(venv) PS C:\Users\msanchez\e-camp-python\practica_final_orm_django> py .\manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, laboratorio, sessions
+Running migrations:
+  Applying laboratorio.0005_directorgeneral_especialidad_laboratorio_ciudad_and_more... OK

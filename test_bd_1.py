@@ -4,11 +4,7 @@ from laboratorio.models import Laboratorio
 class MiModeloTestCase(TestCase):
 
     def setUp(self):
-        """
-        Método para crear los datos necesarios para la prueba.
-        Los datos se guardan en una base de datos simulada.
-        """
-        # Crear una instancia de MiModelo (se guarda en la base de datos de prueba)
+        
         Laboratorio.objects.create(laboratorio='Laboratorio 1', ciudad='Ciudad 1', pais='Pais 1')
 
     def test_modelo_guardado_correctamente(self):
