@@ -1,26 +1,26 @@
 {% extends "layouts/base.html" %}
+
 {% block contenido %}
+    <header>
+        <h1 class="text-center py-3">Registra Laboratorio</h1>
+    </header>
 
-    <main class="container-fluid">
+    <main class="container">
         <section>
-            <h1 class="text-left py-5">Agrega Laboratorio</h1>
-        </section>
-
-        <section>
-
-            <div class="row justify-content-left">
-                <div class="col-12 col-md-5">
-                    <form method="post">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <form action="" method="post">
                         {% csrf_token %}
                         {{form}}
-                        <div class="d-grid gap-2 d-md-block">
-                            <button class="btn btn-primary btn-md" type="submit">Enviar</button>
+
+                        <div class="py-3">
+                            <input type="submit" value="Registrar" class="btn btn-primary">
                         </div>
+                        
                     </form>
+                    
                 </div>
             </div>
-
         </section>
-
     </main>
-{% endblock  %}
+{% endblock contenido %}
