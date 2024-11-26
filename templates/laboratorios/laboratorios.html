@@ -3,7 +3,6 @@
 <main class="container-fluid">
     <section id="listado-laboratorios">
         <h1 class="text-left py-3">Informacion de Laboratorios</h1>
-
         {% if laboratorio %}
             <table class="table">
             <thead>
@@ -23,8 +22,8 @@
                     <td>{{lab.laboratorio|upper}}</td>
                     <td>{{lab.ciudad}}</td>
                     <td>{{lab.pais}}</td>
-                    <td><a class="btn btn-primary" href="{% url 'upd_laboratorio' pk=lab.id %}" class="btn btn-primary" >Actualizar</a></td>
-                    <td><a class="btn btn-primary" href="{% url 'del_laboratorio' pk=lab.id %}" class="btn btn-primary" >Eliminar</a></td>
+                    <td><a class="btn btn-primary" href="{% url 'upd_laboratorio' pk=lab.id %}" class="btn btn-primary" >Actualiza</a></td>
+                    <td><a class="btn btn-primary" href="{% url 'del_laboratorio' pk=lab.id %}" class="btn btn-primary" >Elimina</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

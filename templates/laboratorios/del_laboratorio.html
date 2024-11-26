@@ -1,26 +1,29 @@
 {% extends "layouts/base.html" %}
 {% block contenido %}
 
-    <main class="container-fluid">
+    <main class="container">
         <section>
-            <h1 class="text-left py-5">Eliminar Laboratorio</h1>
-        </section>
-
-        <section>
-
+            <h1 class="text-left py-5">Elimina Laboratorio </h1>
+            <h2 class="text-left py-5">{{ laboratorio.laboratorio }}</h2>
             <div class="row justify-content-left">
                 <div class="col-12 col-md-5">
                     <form method="post">
                         {% csrf_token %}
                         {{form}}
                         <div class="d-grid gap-2 d-md-block">
-                            <button class="btn btn-primary btn-md" type="submit">Eliminar Laboratorio</button>
+                            <button class="btn btn-primary btn-md" type="submit" id="eliminar-btn">Elimina</button>
                         </div>
+                        <script>
+                            // Agregar confirmación antes de eliminar
+                            document.getElementById('eliminar-btn').addEventListener('click', function(event) {
+                            if (!confirm('¿Estás seguro de que deseas eliminar?')) {
+                                event.preventDefault();  // Previene que el formulario se envíe si el usuario cancela
+                            }
+                            });
+                        </script>
                     </form>
                 </div>
             </div>
-
         </section>
-
     </main>
 {% endblock  %}
